@@ -1,0 +1,33 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: AgentFactory
+    network: gnosis
+    source:
+      address: "0x88DE734655184a09B70700aE4F72364d1ad23728"
+      abi: AgentFactory
+      startBlock: 27911512
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CreateMech
+        - OwnerUpdated
+        - Pause
+        - Unpause
+      abis:
+        - name: AgentFactory
+          file: AgentFactory/abis/AgentFactory.json
+      eventHandlers:
+        - event: CreateMech(indexed address,indexed uint256,indexed uint256)
+          handler: handleCreateMech
+        - event: OwnerUpdated(indexed address)
+          handler: handleOwnerUpdated
+        - event: Pause(indexed address)
+          handler: handlePause
+        - event: Unpause(indexed address)
+          handler: handleUnpause
+      file: AgentFactory/AgentFactory.wasm
