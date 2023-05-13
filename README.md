@@ -8,8 +8,8 @@ This subgraph tracks events on the [AgentFactory](https://github.com/valory-xyz/
 ```bash
 yarn install
 ```
-## Query
 
+## Query
 
 ```bash
 node fetchGraphQLData.mjs
