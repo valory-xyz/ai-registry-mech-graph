@@ -36,12 +36,12 @@ type Request @entity(immutable: true) {
   id: Bytes!
   sender: Bytes!
   requestId: BigInt!
-  data: Bytes!
+  ipfsHash: String!
 }
 
 type Delivery @entity(immutable: true) {
   id: Bytes!
   sender: Bytes!
   requestId: BigInt!
-  data: Bytes!
+  ipfsHash: String!
 }

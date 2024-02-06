@@ -78,5 +78,7 @@ dataSources:
           file: AgentMech/abis/AgentMech.json
       eventHandlers:
         - event: Request(indexed address,uint256,bytes)
-          handler: handleCreateMech
+          handler: handleRequest
+        - event: Deliver(indexed address,uint256,bytes)
+          handler: handleDelivery
       file: AgentMech/AgentMech.wasm

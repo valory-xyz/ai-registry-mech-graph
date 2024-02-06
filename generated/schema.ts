@@ -484,17 +484,17 @@ export class Request extends Entity {
     this.set("requestId", Value.fromBigInt(value));
   }
 
-  get data(): Bytes {
-    let value = this.get("data");
+  get ipfsHash(): string {
+    let value = this.get("ipfsHash");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set data(value: Bytes) {
-    this.set("data", Value.fromBytes(value));
+  set ipfsHash(value: string) {
+    this.set("ipfsHash", Value.fromString(value));
   }
 }
 
@@ -565,16 +565,16 @@ export class Delivery extends Entity {
     this.set("requestId", Value.fromBigInt(value));
   }
 
-  get data(): Bytes {
-    let value = this.get("data");
+  get ipfsHash(): string {
+    let value = this.get("ipfsHash");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set data(value: Bytes) {
-    this.set("data", Value.fromBytes(value));
+  set ipfsHash(value: string) {
+    this.set("ipfsHash", Value.fromString(value));
   }
 }

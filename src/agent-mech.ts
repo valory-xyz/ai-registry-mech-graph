@@ -1,8 +1,13 @@
+import { Bytes } from "@graphprotocol/graph-ts"
 import {
     Request as RequestEvent,
     Deliver as DeliverEvent
 } from "../generated/AgentMech/AgentMech"
 import { Request, Delivery } from "../generated/schema"
+
+function getIpfsHash(data: Bytes): string {
+    return "f01701220" + data.toHexString().slice(2)
+}
 
 export function handleRequest(event: RequestEvent): void {
     let entity = new Request(
@@ -10,7 +15,7 @@ export function handleRequest(event: RequestEvent): void {
     )
     entity.sender = event.params.sender
     entity.requestId = event.params.requestId
-    entity.data = event.params.data
+    entity.ipfsHash = getIpfsHash(event.params.data)
     entity.save()
 }
 
@@ -20,6 +25,6 @@ export function handleDelivery(event: DeliverEvent): void {
     )
     entity.sender = event.params.sender
     entity.requestId = event.params.requestId
-    entity.data = event.params.data
+    entity.ipfsHash = getIpfsHash(event.params.data)
     entity.save()
 }
