@@ -31,3 +31,23 @@ type Unpause @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type Request @entity(immutable: true) {
+  id: Bytes!
+  sender: Bytes!
+  requestId: BigInt!
+  ipfsHash: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Deliver @entity(immutable: true) {
+  id: Bytes!
+  sender: Bytes!
+  requestId: BigInt!
+  ipfsHash: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
