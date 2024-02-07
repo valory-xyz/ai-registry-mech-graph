@@ -37,6 +37,9 @@ type Request @entity(immutable: true) {
   sender: Bytes!
   requestId: BigInt!
   ipfsHash: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
 }
 
 type Delivery @entity(immutable: true) {
@@ -44,4 +47,7 @@ type Delivery @entity(immutable: true) {
   sender: Bytes!
   requestId: BigInt!
   ipfsHash: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
 }

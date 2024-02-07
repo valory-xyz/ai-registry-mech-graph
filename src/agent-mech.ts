@@ -16,6 +16,9 @@ export function handleRequest(event: RequestEvent): void {
     entity.sender = event.params.sender
     entity.requestId = event.params.requestId
     entity.ipfsHash = getIpfsHash(event.params.data)
+    entity.blockNumber = event.block.number
+    entity.blockTimestamp = event.block.timestamp
+    entity.transactionHash = event.transaction.hash
     entity.save()
 }
 
@@ -26,5 +29,8 @@ export function handleDelivery(event: DeliverEvent): void {
     entity.sender = event.params.sender
     entity.requestId = event.params.requestId
     entity.ipfsHash = getIpfsHash(event.params.data)
+    entity.blockNumber = event.block.number
+    entity.blockTimestamp = event.block.timestamp
+    entity.transactionHash = event.transaction.hash
     entity.save()
 }
