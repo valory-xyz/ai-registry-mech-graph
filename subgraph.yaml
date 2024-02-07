@@ -81,7 +81,7 @@ dataSources:
         - event: Request(indexed address,uint256,bytes)
           handler: handleRequest
         - event: Deliver(indexed address,uint256,bytes)
-          handler: handleDelivery
+          handler: handleDeliver
       file: ./src/agent-mech.ts
   - kind: ethereum
     name: AgentMech1
@@ -104,7 +104,7 @@ dataSources:
         - event: Request(indexed address,uint256,bytes)
           handler: handleRequest
         - event: Deliver(indexed address,uint256,bytes)
-          handler: handleDelivery
+          handler: handleDeliver
       file: ./src/agent-mech.ts
   - kind: ethereum
     name: AgentMech2
@@ -127,5 +127,5 @@ dataSources:
         - event: Request(indexed address,uint256,bytes)
           handler: handleRequest
         - event: Deliver(indexed address,uint256,bytes)
-          handler: handleDelivery
+          handler: handleDeliver
       file: ./src/agent-mech.ts
