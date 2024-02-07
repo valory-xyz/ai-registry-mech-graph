@@ -3,7 +3,7 @@ import {
     Request as RequestEvent,
     Deliver as DeliverEvent
 } from "../generated/AgentMech/AgentMech"
-import { Request, Delivery } from "../generated/schema"
+import { Request, Deliver } from "../generated/schema"
 
 function getIpfsHash(data: Bytes): string {
     return "f01701220" + data.toHexString().slice(2)
@@ -22,8 +22,8 @@ export function handleRequest(event: RequestEvent): void {
     entity.save()
 }
 
-export function handleDelivery(event: DeliverEvent): void {
-    let entity = new Delivery(
+export function handleDeliver(event: DeliverEvent): void {
+    let entity = new Deliver(
         event.transaction.hash.concatI32(event.logIndex.toI32())
     )
     entity.sender = event.params.sender

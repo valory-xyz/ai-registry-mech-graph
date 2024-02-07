@@ -537,7 +537,7 @@ export class Request extends Entity {
   }
 }
 
-export class Delivery extends Entity {
+export class Deliver extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -545,24 +545,24 @@ export class Delivery extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Delivery entity without an ID");
+    assert(id != null, "Cannot save Deliver entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type Delivery must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type Deliver must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("Delivery", id.toBytes().toHexString(), this);
+      store.set("Deliver", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): Delivery | null {
-    return changetype<Delivery | null>(
-      store.get_in_block("Delivery", id.toHexString())
+  static loadInBlock(id: Bytes): Deliver | null {
+    return changetype<Deliver | null>(
+      store.get_in_block("Deliver", id.toHexString())
     );
   }
 
-  static load(id: Bytes): Delivery | null {
-    return changetype<Delivery | null>(store.get("Delivery", id.toHexString()));
+  static load(id: Bytes): Deliver | null {
+    return changetype<Deliver | null>(store.get("Deliver", id.toHexString()));
   }
 
   get id(): Bytes {
