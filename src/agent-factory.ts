@@ -4,7 +4,7 @@ import {
   Pause as PauseEvent,
   Unpause as UnpauseEvent
 } from "../generated/AgentFactory/AgentFactory"
-import { CreateMech, OwnerUpdated, Pause, Unpause } from "../generated/schema"
+import { CreateMech, MechAgent, OwnerUpdated, Pause, Unpause } from "../generated/schema"
 
 export function handleCreateMech(event: CreateMechEvent): void {
   let entity = new CreateMech(
@@ -19,6 +19,10 @@ export function handleCreateMech(event: CreateMechEvent): void {
   entity.transactionHash = event.transaction.hash
 
   entity.save()
+
+  let mechAgent = new MechAgent(event.params.agentId.toHexString());
+  mechAgent.mech = event.params.mech;
+  mechAgent.save()
 }
 
 export function handleOwnerUpdated(event: OwnerUpdatedEvent): void {

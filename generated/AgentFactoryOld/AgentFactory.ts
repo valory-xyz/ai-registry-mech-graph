@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class CreateMech extends ethereum.Event {
@@ -145,7 +145,7 @@ export class AgentFactory extends ethereum.SmartContract {
     let result = super.tryCall(
       "agentRegistry",
       "agentRegistry():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -157,7 +157,7 @@ export class AgentFactory extends ethereum.SmartContract {
   create(
     agentOwner: Address,
     agentHash: Bytes,
-    price: BigInt
+    price: BigInt,
   ): AgentFactory__createResult {
     let result = super.call(
       "create",
@@ -165,20 +165,20 @@ export class AgentFactory extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(agentOwner),
         ethereum.Value.fromFixedBytes(agentHash),
-        ethereum.Value.fromUnsignedBigInt(price)
-      ]
+        ethereum.Value.fromUnsignedBigInt(price),
+      ],
     );
 
     return new AgentFactory__createResult(
       result[0].toBigInt(),
-      result[1].toAddress()
+      result[1].toAddress(),
     );
   }
 
   try_create(
     agentOwner: Address,
     agentHash: Bytes,
-    price: BigInt
+    price: BigInt,
   ): ethereum.CallResult<AgentFactory__createResult> {
     let result = super.tryCall(
       "create",
@@ -186,15 +186,15 @@ export class AgentFactory extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(agentOwner),
         ethereum.Value.fromFixedBytes(agentHash),
-        ethereum.Value.fromUnsignedBigInt(price)
-      ]
+        ethereum.Value.fromUnsignedBigInt(price),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new AgentFactory__createResult(value[0].toBigInt(), value[1].toAddress())
+      new AgentFactory__createResult(value[0].toBigInt(), value[1].toAddress()),
     );
   }
 

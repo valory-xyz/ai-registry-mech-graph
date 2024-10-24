@@ -129,3 +129,44 @@ dataSources:
         - event: Deliver(indexed address,uint256,bytes)
           handler: handleDeliver
       file: ./src/agent-mech.ts
+  - kind: ethereum
+    name: AgentRegistry
+    network: gnosis
+    source:
+      address: "0xE49CB081e8d96920C38aA7AB90cb0294ab4Bc8EA"
+      abi: AgentRegistry
+      startBlock: 27911490
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - BaseURIChanged
+        - CreateAgent
+        - ManagerUpdated
+        - AgentRegistryOwnerUpdated
+        - Transfer
+        - UpdateAgentHash
+      abis:
+        - name: AgentRegistry
+          file: ./abis/AgentRegistry.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BaseURIChanged(string)
+          handler: handleBaseURIChanged
+        - event: CreateAgent(indexed uint256,bytes32)
+          handler: handleCreateAgent
+        - event: ManagerUpdated(indexed address)
+          handler: handleManagerUpdated
+        - event: OwnerUpdated(indexed address)
+          handler: handleOwnerUpdated
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: UpdateAgentHash(indexed uint256,bytes32)
+          handler: handleUpdateAgentHash
+      file: ./src/agent-registry.ts

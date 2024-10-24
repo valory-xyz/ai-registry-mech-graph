@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Deliver extends ethereum.Event {
@@ -135,7 +135,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "DOMAIN_SEPARATOR_TYPE_HASH",
       "DOMAIN_SEPARATOR_TYPE_HASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -145,7 +145,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_SEPARATOR_TYPE_HASH",
       "DOMAIN_SEPARATOR_TYPE_HASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -188,7 +188,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "domainSeparator",
       "domainSeparator():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -198,7 +198,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "domainSeparator",
       "domainSeparator():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -227,7 +227,7 @@ export class AgentMech extends ethereum.SmartContract {
     value: BigInt,
     data: Bytes,
     operation: i32,
-    txGas: BigInt
+    txGas: BigInt,
   ): Bytes {
     let result = super.call(
       "exec",
@@ -237,8 +237,8 @@ export class AgentMech extends ethereum.SmartContract {
         ethereum.Value.fromUnsignedBigInt(value),
         ethereum.Value.fromBytes(data),
         ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(operation)),
-        ethereum.Value.fromUnsignedBigInt(txGas)
-      ]
+        ethereum.Value.fromUnsignedBigInt(txGas),
+      ],
     );
 
     return result[0].toBytes();
@@ -249,7 +249,7 @@ export class AgentMech extends ethereum.SmartContract {
     value: BigInt,
     data: Bytes,
     operation: i32,
-    txGas: BigInt
+    txGas: BigInt,
   ): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
       "exec",
@@ -259,8 +259,8 @@ export class AgentMech extends ethereum.SmartContract {
         ethereum.Value.fromUnsignedBigInt(value),
         ethereum.Value.fromBytes(data),
         ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(operation)),
-        ethereum.Value.fromUnsignedBigInt(txGas)
-      ]
+        ethereum.Value.fromUnsignedBigInt(txGas),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -273,7 +273,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "getDomainSeparator",
       "getDomainSeparator():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -283,7 +283,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "getDomainSeparator",
       "getDomainSeparator():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -296,7 +296,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "getRequestId",
       "getRequestId(address,bytes):(uint256)",
-      [ethereum.Value.fromAddress(account), ethereum.Value.fromBytes(data)]
+      [ethereum.Value.fromAddress(account), ethereum.Value.fromBytes(data)],
     );
 
     return result[0].toBigInt();
@@ -306,7 +306,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "getRequestId",
       "getRequestId(address,bytes):(uint256)",
-      [ethereum.Value.fromAddress(account), ethereum.Value.fromBytes(data)]
+      [ethereum.Value.fromAddress(account), ethereum.Value.fromBytes(data)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -322,8 +322,8 @@ export class AgentMech extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(account),
         ethereum.Value.fromBytes(data),
-        ethereum.Value.fromUnsignedBigInt(nonce)
-      ]
+        ethereum.Value.fromUnsignedBigInt(nonce),
+      ],
     );
 
     return result[0].toBigInt();
@@ -332,7 +332,7 @@ export class AgentMech extends ethereum.SmartContract {
   try_getRequestIdWithNonce(
     account: Address,
     data: Bytes,
-    nonce: BigInt
+    nonce: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getRequestIdWithNonce",
@@ -340,8 +340,8 @@ export class AgentMech extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(account),
         ethereum.Value.fromBytes(data),
-        ethereum.Value.fromUnsignedBigInt(nonce)
-      ]
+        ethereum.Value.fromUnsignedBigInt(nonce),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -354,7 +354,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "getRequestStatus",
       "getRequestStatus(uint256):(uint8)",
-      [ethereum.Value.fromUnsignedBigInt(requestId)]
+      [ethereum.Value.fromUnsignedBigInt(requestId)],
     );
 
     return result[0].toI32();
@@ -364,7 +364,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "getRequestStatus",
       "getRequestStatus(uint256):(uint8)",
-      [ethereum.Value.fromUnsignedBigInt(requestId)]
+      [ethereum.Value.fromUnsignedBigInt(requestId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -377,7 +377,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "getRequestsCount",
       "getRequestsCount(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
 
     return result[0].toBigInt();
@@ -387,7 +387,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "getRequestsCount",
       "getRequestsCount(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -402,8 +402,8 @@ export class AgentMech extends ethereum.SmartContract {
       "getUndeliveredRequestIds(uint256,uint256):(uint256[])",
       [
         ethereum.Value.fromUnsignedBigInt(size),
-        ethereum.Value.fromUnsignedBigInt(offset)
-      ]
+        ethereum.Value.fromUnsignedBigInt(offset),
+      ],
     );
 
     return result[0].toBigIntArray();
@@ -411,15 +411,15 @@ export class AgentMech extends ethereum.SmartContract {
 
   try_getUndeliveredRequestIds(
     size: BigInt,
-    offset: BigInt
+    offset: BigInt,
   ): ethereum.CallResult<Array<BigInt>> {
     let result = super.tryCall(
       "getUndeliveredRequestIds",
       "getUndeliveredRequestIds(uint256,uint256):(uint256[])",
       [
         ethereum.Value.fromUnsignedBigInt(size),
-        ethereum.Value.fromUnsignedBigInt(offset)
-      ]
+        ethereum.Value.fromUnsignedBigInt(offset),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -430,7 +430,7 @@ export class AgentMech extends ethereum.SmartContract {
 
   isOperator(signer: Address): boolean {
     let result = super.call("isOperator", "isOperator(address):(bool)", [
-      ethereum.Value.fromAddress(signer)
+      ethereum.Value.fromAddress(signer),
     ]);
 
     return result[0].toBoolean();
@@ -438,7 +438,7 @@ export class AgentMech extends ethereum.SmartContract {
 
   try_isOperator(signer: Address): ethereum.CallResult<boolean> {
     let result = super.tryCall("isOperator", "isOperator(address):(bool)", [
-      ethereum.Value.fromAddress(signer)
+      ethereum.Value.fromAddress(signer),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -451,7 +451,10 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "isValidSignature",
       "isValidSignature(bytes32,bytes):(bytes4)",
-      [ethereum.Value.fromFixedBytes(hash), ethereum.Value.fromBytes(signature)]
+      [
+        ethereum.Value.fromFixedBytes(hash),
+        ethereum.Value.fromBytes(signature),
+      ],
     );
 
     return result[0].toBytes();
@@ -459,12 +462,15 @@ export class AgentMech extends ethereum.SmartContract {
 
   try_isValidSignature(
     hash: Bytes,
-    signature: Bytes
+    signature: Bytes,
   ): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
       "isValidSignature",
       "isValidSignature(bytes32,bytes):(bytes4)",
-      [ethereum.Value.fromFixedBytes(hash), ethereum.Value.fromBytes(signature)]
+      [
+        ethereum.Value.fromFixedBytes(hash),
+        ethereum.Value.fromBytes(signature),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -475,7 +481,7 @@ export class AgentMech extends ethereum.SmartContract {
 
   mapNonces(param0: Address): BigInt {
     let result = super.call("mapNonces", "mapNonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -483,7 +489,7 @@ export class AgentMech extends ethereum.SmartContract {
 
   try_mapNonces(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("mapNonces", "mapNonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -496,7 +502,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "mapRequestAddresses",
       "mapRequestAddresses(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
 
     return result[0].toAddress();
@@ -506,7 +512,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "mapRequestAddresses",
       "mapRequestAddresses(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -521,8 +527,8 @@ export class AgentMech extends ethereum.SmartContract {
       "mapRequestIds(uint256,uint256):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return result[0].toBigInt();
@@ -530,15 +536,15 @@ export class AgentMech extends ethereum.SmartContract {
 
   try_mapRequestIds(
     param0: BigInt,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "mapRequestIds",
       "mapRequestIds(uint256,uint256):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -551,7 +557,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "mapRequestsCounts",
       "mapRequestsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -561,7 +567,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "mapRequestsCounts",
       "mapRequestsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -589,7 +595,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "numTotalRequests",
       "numTotalRequests():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -599,7 +605,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "numTotalRequests",
       "numTotalRequests():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -612,7 +618,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.call(
       "numUndeliveredRequests",
       "numUndeliveredRequests():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -622,7 +628,7 @@ export class AgentMech extends ethereum.SmartContract {
     let result = super.tryCall(
       "numUndeliveredRequests",
       "numUndeliveredRequests():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -636,7 +642,7 @@ export class AgentMech extends ethereum.SmartContract {
     param1: Address,
     param2: Array<BigInt>,
     param3: Array<BigInt>,
-    param4: Bytes
+    param4: Bytes,
   ): Bytes {
     let result = super.call(
       "onERC1155BatchReceived",
@@ -646,8 +652,8 @@ export class AgentMech extends ethereum.SmartContract {
         ethereum.Value.fromAddress(param1),
         ethereum.Value.fromUnsignedBigIntArray(param2),
         ethereum.Value.fromUnsignedBigIntArray(param3),
-        ethereum.Value.fromBytes(param4)
-      ]
+        ethereum.Value.fromBytes(param4),
+      ],
     );
 
     return result[0].toBytes();
@@ -658,7 +664,7 @@ export class AgentMech extends ethereum.SmartContract {
     param1: Address,
     param2: Array<BigInt>,
     param3: Array<BigInt>,
-    param4: Bytes
+    param4: Bytes,
   ): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
       "onERC1155BatchReceived",
@@ -668,8 +674,8 @@ export class AgentMech extends ethereum.SmartContract {
         ethereum.Value.fromAddress(param1),
         ethereum.Value.fromUnsignedBigIntArray(param2),
         ethereum.Value.fromUnsignedBigIntArray(param3),
-        ethereum.Value.fromBytes(param4)
-      ]
+        ethereum.Value.fromBytes(param4),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -683,7 +689,7 @@ export class AgentMech extends ethereum.SmartContract {
     param1: Address,
     param2: BigInt,
     param3: BigInt,
-    param4: Bytes
+    param4: Bytes,
   ): Bytes {
     let result = super.call(
       "onERC1155Received",
@@ -693,8 +699,8 @@ export class AgentMech extends ethereum.SmartContract {
         ethereum.Value.fromAddress(param1),
         ethereum.Value.fromUnsignedBigInt(param2),
         ethereum.Value.fromUnsignedBigInt(param3),
-        ethereum.Value.fromBytes(param4)
-      ]
+        ethereum.Value.fromBytes(param4),
+      ],
     );
 
     return result[0].toBytes();
@@ -705,7 +711,7 @@ export class AgentMech extends ethereum.SmartContract {
     param1: Address,
     param2: BigInt,
     param3: BigInt,
-    param4: Bytes
+    param4: Bytes,
   ): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
       "onERC1155Received",
@@ -715,8 +721,8 @@ export class AgentMech extends ethereum.SmartContract {
         ethereum.Value.fromAddress(param1),
         ethereum.Value.fromUnsignedBigInt(param2),
         ethereum.Value.fromUnsignedBigInt(param3),
-        ethereum.Value.fromBytes(param4)
-      ]
+        ethereum.Value.fromBytes(param4),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -729,7 +735,7 @@ export class AgentMech extends ethereum.SmartContract {
     param0: Address,
     param1: Address,
     param2: BigInt,
-    param3: Bytes
+    param3: Bytes,
   ): Bytes {
     let result = super.call(
       "onERC721Received",
@@ -738,8 +744,8 @@ export class AgentMech extends ethereum.SmartContract {
         ethereum.Value.fromAddress(param0),
         ethereum.Value.fromAddress(param1),
         ethereum.Value.fromUnsignedBigInt(param2),
-        ethereum.Value.fromBytes(param3)
-      ]
+        ethereum.Value.fromBytes(param3),
+      ],
     );
 
     return result[0].toBytes();
@@ -749,7 +755,7 @@ export class AgentMech extends ethereum.SmartContract {
     param0: Address,
     param1: Address,
     param2: BigInt,
-    param3: Bytes
+    param3: Bytes,
   ): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
       "onERC721Received",
@@ -758,8 +764,8 @@ export class AgentMech extends ethereum.SmartContract {
         ethereum.Value.fromAddress(param0),
         ethereum.Value.fromAddress(param1),
         ethereum.Value.fromUnsignedBigInt(param2),
-        ethereum.Value.fromBytes(param3)
-      ]
+        ethereum.Value.fromBytes(param3),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -816,7 +822,7 @@ export class AgentMech extends ethereum.SmartContract {
   validateUserOp(
     userOp: AgentMech__validateUserOpInputUserOpStruct,
     userOpHash: Bytes,
-    missingAccountFunds: BigInt
+    missingAccountFunds: BigInt,
   ): BigInt {
     let result = super.call(
       "validateUserOp",
@@ -824,8 +830,8 @@ export class AgentMech extends ethereum.SmartContract {
       [
         ethereum.Value.fromTuple(userOp),
         ethereum.Value.fromFixedBytes(userOpHash),
-        ethereum.Value.fromUnsignedBigInt(missingAccountFunds)
-      ]
+        ethereum.Value.fromUnsignedBigInt(missingAccountFunds),
+      ],
     );
 
     return result[0].toBigInt();
@@ -834,7 +840,7 @@ export class AgentMech extends ethereum.SmartContract {
   try_validateUserOp(
     userOp: AgentMech__validateUserOpInputUserOpStruct,
     userOpHash: Bytes,
-    missingAccountFunds: BigInt
+    missingAccountFunds: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "validateUserOp",
@@ -842,8 +848,8 @@ export class AgentMech extends ethereum.SmartContract {
       [
         ethereum.Value.fromTuple(userOp),
         ethereum.Value.fromFixedBytes(userOpHash),
-        ethereum.Value.fromUnsignedBigInt(missingAccountFunds)
-      ]
+        ethereum.Value.fromUnsignedBigInt(missingAccountFunds),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1088,7 +1094,7 @@ export class ValidateUserOpCall__Inputs {
 
   get userOp(): ValidateUserOpCallUserOpStruct {
     return changetype<ValidateUserOpCallUserOpStruct>(
-      this._call.inputValues[0].value.toTuple()
+      this._call.inputValues[0].value.toTuple(),
     );
   }
 
