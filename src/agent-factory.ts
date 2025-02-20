@@ -5,6 +5,8 @@ import {
   Unpause as UnpauseEvent
 } from "../generated/AgentFactory/AgentFactory"
 import { CreateMech, MechAgent, OwnerUpdated, Pause, Unpause } from "../generated/schema"
+import { AgentMech } from "../generated/templates";
+
 
 export function handleCreateMech(event: CreateMechEvent): void {
   let entity = new CreateMech(
@@ -23,6 +25,8 @@ export function handleCreateMech(event: CreateMechEvent): void {
   let mechAgent = new MechAgent(event.params.agentId.toHexString());
   mechAgent.mech = event.params.mech;
   mechAgent.save()
+
+  AgentMech.create(event.params.mech);
 }
 
 export function handleOwnerUpdated(event: OwnerUpdatedEvent): void {

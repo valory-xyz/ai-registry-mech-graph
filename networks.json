@@ -1,12 +1,20 @@
 {
   "gnosis": {
-    "AgentFactoryOld": {
+    "AgentFactory": {
       "address": "0x88DE734655184a09B70700aE4F72364d1ad23728",
       "startBlock": 27911512
     },
-    "AgentFactory": {
+    "AgentFactoryV2": {
       "address": "0x4be7A91e67be963806FeFA9C1FD6C53DfC358d94",
       "startBlock": 30662989
+    },
+    "AgentFactoryV3": {
+      "address": "0x2acd313b892c9922e470e4950e907d5eaa70fc2a",
+      "startBlock": 35714019
+    },
+    "AgentFactoryV4": {
+      "address": "0x6d8cbebcad7397c63347d44448147db05e7d17b0",
+      "startBlock": 36582492
     },
     "AgentRegistry": {
       "address": "0xE49CB081e8d96920C38aA7AB90cb0294ab4Bc8EA"

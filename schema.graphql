@@ -35,6 +35,7 @@ type Unpause @entity(immutable: true) {
 type Request @entity(immutable: true) {
   id: Bytes!
   sender: Bytes!
+  mech: Bytes! # address
   requestId: BigInt!
   ipfsHash: String!
   blockNumber: BigInt!
@@ -45,6 +46,7 @@ type Request @entity(immutable: true) {
 type Deliver @entity(immutable: true) {
   id: Bytes!
   sender: Bytes!
+  mech: Bytes! # address
   requestId: BigInt!
   ipfsHash: String!
   blockNumber: BigInt!
