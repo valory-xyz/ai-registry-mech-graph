@@ -2,7 +2,7 @@ import { Bytes } from "@graphprotocol/graph-ts"
 import {
     Request as RequestEvent,
     Deliver as DeliverEvent
-} from "../generated/AgentMech/AgentMech"
+} from "../generated/templates/AgentMech/AgentMech"
 import { Request, Deliver } from "../generated/schema"
 
 function getIpfsHash(data: Bytes): string {
@@ -14,6 +14,7 @@ export function handleRequest(event: RequestEvent): void {
         event.transaction.hash.concatI32(event.logIndex.toI32())
     )
     entity.sender = event.params.sender
+    entity.mech = event.address
     entity.requestId = event.params.requestId
     entity.ipfsHash = getIpfsHash(event.params.data)
     entity.blockNumber = event.block.number
@@ -27,6 +28,7 @@ export function handleDeliver(event: DeliverEvent): void {
         event.transaction.hash.concatI32(event.logIndex.toI32())
     )
     entity.sender = event.params.sender
+    entity.mech = event.address
     entity.requestId = event.params.requestId
     entity.ipfsHash = getIpfsHash(event.params.data)
     entity.blockNumber = event.block.number

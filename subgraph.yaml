@@ -3,7 +3,7 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: AgentFactoryOld
+    name: AgentFactory
     network: gnosis
     source:
       address: "0x88DE734655184a09B70700aE4F72364d1ad23728"
@@ -32,7 +32,7 @@ dataSources:
           handler: handleUnpause
       file: ./src/agent-factory.ts
   - kind: ethereum
-    name: AgentFactory
+    name: AgentFactoryV2
     network: gnosis
     source:
       address: "0x4be7A91e67be963806FeFA9C1FD6C53DfC358d94"
@@ -61,58 +61,110 @@ dataSources:
           handler: handleUnpause
       file: ./src/agent-factory.ts
   - kind: ethereum
-    name: AgentMech
+    name: AgentFactoryV3
     network: gnosis
     source:
-      address: "0xFf82123dFB52ab75C417195c5fDB87630145ae81"
-      abi: AgentMech
-      startBlock: 27939300
+      address: "0x2acd313b892c9922e470e4950e907d5eaa70fc2a"
+      abi: AgentFactory
+      startBlock: 35714019
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - Request
-        - Deliver
+        - CreateMech
+        - OwnerUpdated
+        - Pause
+        - Unpause
       abis:
-        - name: AgentMech
-          file: ./abis/AgentMech.json
+        - name: AgentFactory
+          file: ./abis/AgentFactory.json
       eventHandlers:
-        - event: Request(indexed address,uint256,bytes)
-          handler: handleRequest
-        - event: Deliver(indexed address,uint256,bytes)
-          handler: handleDeliver
-      file: ./src/agent-mech.ts
+        - event: CreateMech(indexed address,indexed uint256,indexed uint256)
+          handler: handleCreateMech
+        - event: OwnerUpdated(indexed address)
+          handler: handleOwnerUpdated
+        - event: Pause(indexed address)
+          handler: handlePause
+        - event: Unpause(indexed address)
+          handler: handleUnpause
+      file: ./src/agent-factory.ts
   - kind: ethereum
-    name: AgentMech1
+    name: AgentFactoryV4
     network: gnosis
     source:
-      address: "0x77af31De935740567Cf4fF1986D04B2c964A786a"
-      abi: AgentMech
-      startBlock: 30776800
+      address: "0x6d8cbebcad7397c63347d44448147db05e7d17b0"
+      abi: AgentFactory
+      startBlock: 36582492
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - Request
-        - Deliver
+        - CreateMech
+        - OwnerUpdated
+        - Pause
+        - Unpause
       abis:
-        - name: AgentMech
-          file: ./abis/AgentMech.json
+        - name: AgentFactory
+          file: ./abis/AgentFactory.json
       eventHandlers:
-        - event: Request(indexed address,uint256,bytes)
-          handler: handleRequest
-        - event: Deliver(indexed address,uint256,bytes)
-          handler: handleDeliver
-      file: ./src/agent-mech.ts
+        - event: CreateMech(indexed address,indexed uint256,indexed uint256)
+          handler: handleCreateMech
+        - event: OwnerUpdated(indexed address)
+          handler: handleOwnerUpdated
+        - event: Pause(indexed address)
+          handler: handlePause
+        - event: Unpause(indexed address)
+          handler: handleUnpause
+      file: ./src/agent-factory.ts
   - kind: ethereum
-    name: AgentMech2
+    name: AgentRegistry
     network: gnosis
     source:
-      address: "0x1Ce2Bc116fF7E668b1c57572B8981Ac0947034D1"
+      address: "0xE49CB081e8d96920C38aA7AB90cb0294ab4Bc8EA"
+      abi: AgentRegistry
+      startBlock: 27911490
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - BaseURIChanged
+        - CreateAgent
+        - ManagerUpdated
+        - AgentRegistryOwnerUpdated
+        - Transfer
+        - UpdateAgentHash
+      abis:
+        - name: AgentRegistry
+          file: ./abis/AgentRegistry.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BaseURIChanged(string)
+          handler: handleBaseURIChanged
+        - event: CreateAgent(indexed uint256,bytes32)
+          handler: handleCreateAgent
+        - event: ManagerUpdated(indexed address)
+          handler: handleManagerUpdated
+        - event: OwnerUpdated(indexed address)
+          handler: handleOwnerUpdated
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: UpdateAgentHash(indexed uint256,bytes32)
+          handler: handleUpdateAgentHash
+      file: ./src/agent-registry.ts
+templates:
+  - name: AgentMech
+    kind: ethereum/contract
+    network: gnosis
+    source:
       abi: AgentMech
-      startBlock: 32224000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

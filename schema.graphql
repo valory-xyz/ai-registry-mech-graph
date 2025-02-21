@@ -35,6 +35,7 @@ type Unpause @entity(immutable: true) {
 type Request @entity(immutable: true) {
   id: Bytes!
   sender: Bytes!
+  mech: Bytes! # address
   requestId: BigInt!
   ipfsHash: String!
   blockNumber: BigInt!
@@ -45,9 +46,87 @@ type Request @entity(immutable: true) {
 type Deliver @entity(immutable: true) {
   id: Bytes!
   sender: Bytes!
+  mech: Bytes! # address
   requestId: BigInt!
   ipfsHash: String!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+}
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  spender: Bytes! # address
+  AgentRegistry_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ApprovalForAll @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  operator: Bytes! # address
+  approved: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BaseURIChanged @entity(immutable: true) {
+  id: Bytes!
+  baseURI: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CreateAgent @entity(immutable: true) {
+  id: Bytes!
+  agentId: BigInt! # uint256
+  agentHash: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ManagerUpdated @entity(immutable: true) {
+  id: Bytes!
+  manager: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type AgentRegistryOwnerUpdated @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  AgentRegistry_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type UpdateAgentHash @entity(immutable: true) {
+  id: Bytes!
+  agentId: BigInt! # uint256
+  agentHash: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MechAgent @entity {
+  id: ID! # uint256
+  mech: Bytes # address
+  agentHash: Bytes # bytes32
 }

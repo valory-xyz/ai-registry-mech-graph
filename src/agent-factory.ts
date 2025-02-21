@@ -4,7 +4,9 @@ import {
   Pause as PauseEvent,
   Unpause as UnpauseEvent
 } from "../generated/AgentFactory/AgentFactory"
-import { CreateMech, OwnerUpdated, Pause, Unpause } from "../generated/schema"
+import { CreateMech, MechAgent, OwnerUpdated, Pause, Unpause } from "../generated/schema"
+import { AgentMech } from "../generated/templates";
+
 
 export function handleCreateMech(event: CreateMechEvent): void {
   let entity = new CreateMech(
@@ -19,6 +21,22 @@ export function handleCreateMech(event: CreateMechEvent): void {
   entity.transactionHash = event.transaction.hash
 
   entity.save()
+
+  let mechAgent = MechAgent.load(event.params.agentId.toHexString());
+
+  // Mech is created after agent, which already handles mechAgent creation
+  // add this check just in case
+  if (mechAgent !== null) {
+    mechAgent.mech = event.params.mech;
+    mechAgent.save()
+  } else {
+    mechAgent = new MechAgent(event.params.agentId.toHexString());
+    mechAgent.mech = event.params.mech;
+    mechAgent.save()
+  }
+  
+
+  AgentMech.create(event.params.mech);
 }
 
 export function handleOwnerUpdated(event: OwnerUpdatedEvent): void {
