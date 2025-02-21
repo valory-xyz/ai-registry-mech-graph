@@ -127,6 +127,6 @@ type UpdateAgentHash @entity(immutable: true) {
 
 type MechAgent @entity {
   id: ID! # uint256
-  mech: Bytes! # address
+  mech: Bytes # address
   agentHash: Bytes # bytes32
 }

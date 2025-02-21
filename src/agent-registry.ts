@@ -76,6 +76,17 @@ export function handleCreateAgent(event: CreateAgentEvent): void {
   entity.transactionHash = event.transaction.hash
 
   entity.save()
+
+  let mechAgent = MechAgent.load(event.params.agentId.toHexString());
+
+  if (mechAgent !== null) {
+    mechAgent.agentHash = event.params.agentHash;
+    mechAgent.save()
+  } else {
+    mechAgent = new MechAgent(event.params.agentId.toHexString());
+    mechAgent.agentHash = event.params.agentHash;
+    mechAgent.save()
+  }
 }
 
 export function handleManagerUpdated(event: ManagerUpdatedEvent): void {

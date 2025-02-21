@@ -22,9 +22,19 @@ export function handleCreateMech(event: CreateMechEvent): void {
 
   entity.save()
 
-  let mechAgent = new MechAgent(event.params.agentId.toHexString());
-  mechAgent.mech = event.params.mech;
-  mechAgent.save()
+  let mechAgent = MechAgent.load(event.params.agentId.toHexString());
+
+  // Mech is created after agent, which already handles mechAgent creation
+  // add this check just in case
+  if (mechAgent !== null) {
+    mechAgent.mech = event.params.mech;
+    mechAgent.save()
+  } else {
+    mechAgent = new MechAgent(event.params.agentId.toHexString());
+    mechAgent.mech = event.params.mech;
+    mechAgent.save()
+  }
+  
 
   AgentMech.create(event.params.mech);
 }
